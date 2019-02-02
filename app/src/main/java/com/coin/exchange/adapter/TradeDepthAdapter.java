@@ -51,18 +51,18 @@ public class TradeDepthAdapter extends RecyclerView.Adapter<TradeDepthAdapter.De
     public void onBindViewHolder(final DepthListViewHolder holder, final int position) {
         if (depthList.getAsks().size() + depthList.getBids().size() >= 10) {
             if (position < 5) {
-                holder.tvTradeDepthPrise.setText(BigDecimal.valueOf(depthList.getAsks().get(position).get(0)) + "");
+                holder.tvTradeDepthPrise.setText(BigDecimal.valueOf(depthList.getAsks().get(4 - position).get(0)) + "");
                 holder.tvTradeDepthPrise.setTextColor(context.getResources().getColor(R.color.kline_red));
-                holder.tvTradeDepthNumber.setText(df_0.format(depthList.getAsks().get(position).get(1)));
+                holder.tvTradeDepthNumber.setText(df_0.format(depthList.getAsks().get(4 - position).get(1)));
             } else {
                 holder.tvTradeDepthPrise.setText(BigDecimal.valueOf(depthList.getBids().get(position - 5).get(0)) + "");
                 holder.tvTradeDepthPrise.setTextColor(context.getResources().getColor(R.color.kline_green));
                 holder.tvTradeDepthNumber.setText(df_0.format(depthList.getBids().get(position - 5).get(1)));
             }
         } else if (position < depthList.getAsks().size()) {
-            holder.tvTradeDepthPrise.setText(BigDecimal.valueOf(depthList.getAsks().get(position).get(0)) + "");
+            holder.tvTradeDepthPrise.setText(BigDecimal.valueOf(depthList.getAsks().get((depthList.getAsks().size() - 1) - position).get(0)) + "");
             holder.tvTradeDepthPrise.setTextColor(context.getResources().getColor(R.color.kline_red));
-            holder.tvTradeDepthNumber.setText(df_0.format(depthList.getAsks().get(position).get(1)));
+            holder.tvTradeDepthNumber.setText(df_0.format(depthList.getAsks().get((depthList.getAsks().size() - 1) - position).get(1)));
         } else {
             holder.tvTradeDepthPrise.setText(BigDecimal.valueOf(depthList.getBids().get(position - depthList.getAsks().size()).get(0)) + "");
             holder.tvTradeDepthPrise.setTextColor(context.getResources().getColor(R.color.kline_green));
